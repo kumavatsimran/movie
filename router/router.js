@@ -16,7 +16,7 @@ router.get('/view',showPage);
 router.get('/editData',editData);
 router.get('/deleteData',deletedata);
 
-router.post('/editData',update);
+router.post('/updateData',uploadImage,update);
 router.post('/insertData',uploadImage,formFill);
 
 module.exports=router

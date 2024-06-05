@@ -3,6 +3,7 @@ const multer=require('multer')
 // 
 const fs = require("fs");
 
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./uploads/images");
@@ -17,6 +18,7 @@ const uploadImage = multer({ storage }).single("image");
 let movieid;
 
 // 
+
 const indexPage=(req,res)=>{  
  
     return res.render('./pages/index')
@@ -29,7 +31,7 @@ const formPage=(req,res)=>{
 }
 const formFill =async(req,res)=>{
     const image = req.file.path;
-    console.log(image )
+    // console.log(image )
     try {
         let data=await userDB.create({...req.body, image});
         // res.send(data)
@@ -43,7 +45,7 @@ const showPage = async(req,res)=>{
 
     try {
         let data = await userDB.find({});
-        console.log(data);
+        // console.log(data);
         return res.render('./pages/view',{data});
     } catch (error) {
         console.log(error);
@@ -81,8 +83,9 @@ const deletedata = async (req, res) => {
 
 const editData= async(req, res) => {
     let id = req.query.id;
+    movieid=id
     userDB.findById(id).then((data) => {
-        console.log(data,"update");
+        // console.log(data,"update");
         return res.render('./pages/edit', { data });
     }).catch((err) => {
         console.log(err);
@@ -106,15 +109,16 @@ const editData= async(req, res) => {
 // }
 
 const update= async (req, res) => {
-    console.log(req.query);
-    const {id} = req.query
-    console.log({id});
   let data = req.body;
+  console.log("/////////////////////////",data);
   if (req.file) {
     data.image = req.file.path;
   }
+  console.log("/////////////////////////",data);
   try {
-    let result = await userDB.findByIdAndUpdate(id, data);
+    let result = await userDB.findByIdAndUpdate(movieid, data);
+   console.log("/////////////////////////",result);
+
     return res.redirect("/view");
   } catch (error) {
     console.log(error);

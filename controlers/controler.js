@@ -68,18 +68,6 @@ const deletedata = async (req, res) => {
       console.log(error);
     }
   };
-// const deletedata = async (req,res)=>{
-//     let id= req.query.id;
-
-//     try{
-//         let data = await  userDB.findByIdAndDelete(id);
-//         console.log(data);
-//         res.redirect('./view')
-//     }catch(error){
-//         console.log(error);
-//     }
-// }
-
 
 const editData= async(req, res) => {
     let id = req.query.id;
@@ -93,32 +81,16 @@ const editData= async(req, res) => {
     })
 }
 
-// const update= async(req,res)=>{
-//     console.log('bbbbbbbbbbbbbbbbbb')
-//     console.log(req.body);
-//     try {
-//         let data= await userDB.findByIdAndUpdate(id,req.body).then((data)=>{
-//             console.log(data,"edit");
-       
-//             res.redirect('/view',)
-//         });
-       
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
+
 
 const update= async (req, res) => {
   let data = req.body;
-  console.log("/////////////////////////",data);
+
   if (req.file) {
     data.image = req.file.path;
   }
-  console.log("/////////////////////////",data);
-  try {
-    let result = await userDB.findByIdAndUpdate(movieid, data);
-   console.log("/////////////////////////",result);
 
+  try {;
     return res.redirect("/view");
   } catch (error) {
     console.log(error);

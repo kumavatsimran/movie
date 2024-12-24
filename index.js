@@ -4,7 +4,7 @@ const router  = require('./router/router');
 const { database } = require('./config/database');
 const path = require("path")
 const app=express()
-
+console.log(database,"ss")
 app.use(router)
 app.use(express.urlencoded({ extended: true }))
 app.use("/uploads/images",express.static(path.join(__dirname,"/uploads/images")))

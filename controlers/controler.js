@@ -85,16 +85,21 @@ const editData= async(req, res) => {
 
 const update= async (req, res) => {
   let data = req.body;
-
+  console.log("/////////////////////////",data);
   if (req.file) {
     data.image = req.file.path;
   }
+  console.log("/////////////////////////",data);
+  try {
+    let result = await userDB.findByIdAndUpdate(movieid, data);
+   console.log("/////////////////////////",result);
 
-  try {;
     return res.redirect("/view");
   } catch (error) {
     console.log(error);
   }
 };
+
+
 module.exports = {uploadImage,indexPage,editPage,formPage,formFill,editData,update,deletedata,showPage};
 // module.exports = {indexPage,formPage,editPage,showPage};
